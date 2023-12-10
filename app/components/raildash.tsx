@@ -62,17 +62,17 @@ export function Raildash() {
               <TrainTrackIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">128</div>
+              <div className="text-2xl font-bold">120</div>
               <p className="text-xs text-gray-500 dark:text-gray-400">+4 since last week</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">Average Speed</CardTitle>
+              <CardTitle className="text-sm font-medium">7 Day Velocity</CardTitle>
               <GaugeIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">45 mph</div>
+              <div className="text-2xl font-bold">23 mph</div>
               <p className="text-xs text-gray-500 dark:text-gray-400">+2 mph from last month</p>
             </CardContent>
           </Card>
@@ -114,10 +114,10 @@ export function Raildash() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-medium">TR001</TableCell>
-                    <TableCell>Station A</TableCell>
-                    <TableCell>On Time</TableCell>
-                    <TableCell className="text-right">45 mph</TableCell>
+                    <TableCell className="font-medium">Props Train ID</TableCell>
+                    <TableCell>Props Location</TableCell>
+                    <TableCell>Props Status</TableCell>
+                    <TableCell className="text-right">Props Speed</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">TR002</TableCell>

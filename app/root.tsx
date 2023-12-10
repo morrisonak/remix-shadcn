@@ -18,22 +18,22 @@ import {
 } from '@remix-run/react';
 
 import globalStyles from '~/styles/global.css';
-import { getThemeFromCookie } from '~/lib/theme.server';
+//import { getThemeFromCookie } from '~/lib/theme.server';
 import { ThemeProvider } from '~/components/theme-provider';
-import { Header } from '~/components/header';
-import { Analytics } from '@vercel/analytics/react';
+//import { Header } from '~/components/header';
+//import { Analytics } from '@vercel/analytics/react';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: globalStyles },
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
 ];
 
-export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
-  const theme = await getThemeFromCookie(request);
-  return json({
-    theme,
-  });
-};
+// export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
+//   const theme = await getThemeFromCookie(request);
+//   return json({
+//     theme,
+//   });
+// };
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -80,20 +80,20 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export default function App() {
-  const { theme = 'system' } = useLoaderData<typeof loader>();
-  const fetcher = useFetcher();
-  const onThemeChange = (theme: string) => {
-    fetcher.submit(
-      { theme },
-      {
-        method: 'post',
-        encType: 'application/json',
-        action: '/api/toggleTheme',
-      },
-    );
-  };
+ // const { theme = 'system' } = useLoaderData<typeof loader>();
+//  const fetcher = useFetcher();
+  // const onThemeChange = (theme: string) => {
+  //   fetcher.submit(
+  //     { theme },
+  //     {
+  //       method: 'post',
+  //       encType: 'application/json',
+  //       action: '/api/toggleTheme',
+  //     },
+  //   );
+  // };
   return (
-    <html lang="en" className={theme ?? 'theme'}>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -101,11 +101,9 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-        <Analytics />
-        <ThemeProvider defaultTheme={theme} onThemeChange={onThemeChange}>
-          <Header />
+        
           <Outlet />
-        </ThemeProvider>
+        
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

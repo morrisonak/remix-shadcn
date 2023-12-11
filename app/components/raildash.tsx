@@ -8,7 +8,12 @@ import { Button } from "@/components/ui/button"
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 
-export function Raildash() {
+
+export function Raildash({ trainData }) {
+  console.log(trainData);
+  if (!Array.isArray(trainData)) {
+    return <div>No train data available.</div>;
+  }
   return (
     <div className="flex flex-col w-full min-h-screen bg-gray-100">
       <header className="flex items-center h-16 px-4 border-b bg-white shrink-0 md:px-6">
@@ -113,12 +118,14 @@ export function Raildash() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow>
-                    <TableCell className="font-medium">Props Train ID</TableCell>
-                    <TableCell>Props Location</TableCell>
-                    <TableCell>Props Status</TableCell>
-                    <TableCell className="text-right">Props Speed</TableCell>
-                  </TableRow>
+                  {trainData.map(train => (
+                    <TableRow key={train.id}>
+                      <TableCell className="font-medium">{train.id}</TableCell>
+                      <TableCell>{train.location}</TableCell>
+                      <TableCell>{train.status}</TableCell>
+                      <TableCell className="text-right">{train.speed}</TableCell>
+                    </TableRow>
+                  ))}
                   <TableRow>
                     <TableCell className="font-medium">TR002</TableCell>
                     <TableCell>Station B</TableCell>

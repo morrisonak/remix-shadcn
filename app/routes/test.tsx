@@ -1,47 +1,89 @@
-import { json } from "@remix-run/node";
-//import { useLoaderData } from "@remix-run/react";
-import { Raildash } from "~/components/raildash";
+import { json } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 
-
-const url = "https://mock-api.jmorrison.workers.dev/"
-
-
-
-export const loader = async () => {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.statusText}`);
-        }
-        const trainData = await response.json();
-
-        // Assuming trainData is an array with at least one object
-        if (Array.isArray(trainData) && trainData.length > 0) {
-            const { id } = trainData[0]; // Access the first object in the array
-            console.log('the train id is:', id);
-
-            return trainData;
-        } else {
-            console.log('trainData is empty or not an array with objects');
-            return null; // You can return a default value or handle this case as needed
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        throw error; // Re-throw the error to handle it elsewhere if needed
-    }
+// Define TypeScript interfaces
+interface Position {
+  latitude: number;
+  longitude: number;
+  bearing?: number;
+  speed: number;
 }
 
+interface Vehicle {
+  position: Position;
+  currentStopSequence: number;
+  currentStatus: string;
+  timestamp: string;
+  stopId: string;
+}
 
+interface TrainData {
+  id: string;
+  vehicle: Vehicle;
+  uuid: string;
+}
 
+interface TransformedTrainData {
+  id: string;
+  currentStopSequence: number;
+  currentStatus: string;
+  timestamp: string;
+  stopId: string;
+  position: Position;
+  uuid: string;
+}
 
+const url = 'https://mock-api.jmorrison.workers.dev/';
 
+export const loader = async () => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error fetching data: ${response.statusText}`);
+    }
+    const trainDataArray: TrainData[] = await response.json();
+
+    const transformedData: TransformedTrainData[] = trainDataArray.map(({ id, vehicle, uuid }) => {
+      const { position, currentStopSequence, currentStatus, timestamp, stopId } = vehicle;
+      return { id, currentStopSequence, currentStatus, timestamp, stopId, position, uuid };
+    });
+
+    return json(transformedData); 
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+
+// Dashboard component
 export default function Dashboard() {
-    // const { trainData } = useLoaderData()
-    //console.log(trainData)
-    return (
-        <div>
-            <h1>Test</h1>
-        </div>
+  const trainData: TransformedTrainData[] = useLoaderData();
 
-    )
+  // Function to render train data
+  const renderTrainData = () => {
+    if (trainData.length > 0) {
+      return trainData.map((train: TransformedTrainData, index: number) => (
+        <div key={index}>
+          <div className='py-2 px-4'>
+            <p>Train ID: {train.id}</p>
+            <p>Current Stop Sequence: {train.currentStopSequence}</p>
+            <p>Current Status: {train.currentStatus}</p>
+            <p>Timestamp: {train.timestamp}</p>
+            <p>Stop ID: {train.stopId}</p>
+            <p>Speed: {train.position.speed}</p>
+            <p>UUID: {train.uuid}</p>
+          </div>
+        </div>
+      ));
+    } else {
+      return <p>No train data available.</p>;
+    }
+  };
+
+  return (
+    <div>
+      <h1 className="p-2">Train Data:</h1>
+      <h2 className="py-2">{renderTrainData()}</h2>
+    </div>
+  );
 }

@@ -2,10 +2,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Raildash } from "~/components/raildash";
 
-
-const url = "https://mock-api.jmorrison.workers.dev/"
-
-
+const url = "https://mock-api.jmorrison.workers.dev/";
 
 export const loader = async () => {
     try {
@@ -17,12 +14,11 @@ export const loader = async () => {
 
         // Transform the data into a simpler format
         const simplifiedData = trainData.map(item => ({
-            id: item.vehicle.trip.tripId,
+            id: item.id.slice(2),
             location: `Lat: ${item.vehicle.position.latitude}, Long: ${item.vehicle.position.longitude}`,
             status: item.vehicle.currentStatus,
             speed: `${item.vehicle.position.speed.toFixed(2)} mph`
         }));
-        console.log(simplifiedData)
 
         return json(simplifiedData);
     } catch (error) {
@@ -31,14 +27,10 @@ export const loader = async () => {
     }
 };
 
- 
-
-
 export default function Dashboard() {
-    const { trainData } = useLoaderData()
-    //console.log(trainData)
+    const trainData = useLoaderData(); // Directly use the data from the loader
+
     return (
         <Raildash trainData={trainData} />
-        
-    )
+    );
 }

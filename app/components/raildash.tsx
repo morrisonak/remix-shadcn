@@ -103,51 +103,38 @@ export function Raildash({ trainData }) {
           </Card>
         </div>
         <div>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">Train Status</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[100px]">Train ID</TableHead>
-                    <TableHead>Location</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Speed</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {trainData.map(train => (
+        <Card>
+    <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+        <CardTitle className="text-xs sm:text-sm font-medium">Train Status</CardTitle>
+    </CardHeader>
+    <CardContent>
+        <Table className="min-w-full">
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="w-[80px] sm:w-[100px]">Train ID</TableHead>
+                    <TableHead className="text-xs sm:text-sm">Location</TableHead>
+                    <TableHead className="text-xs sm:text-sm">Status</TableHead>
+                    <TableHead className="text-right text-xs sm:text-sm w-[80px] sm:w-auto">Speed</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                {trainData.map(train => (
                     <TableRow key={train.id}>
-                      <TableCell className="font-medium">{train.id}</TableCell>
-                      <TableCell>{train.location}</TableCell>
-                      <TableCell>{train.status}</TableCell>
-                      <TableCell className="text-right">{train.speed}</TableCell>
+                        <TableCell className="font-medium text-xs sm:text-sm">{train.id}</TableCell>
+                        <TableCell className="text-xs sm:text-sm">
+                            <a href={`https://www.google.com/maps?q=${train.latitude},${train.longitude}`} target="_blank" rel="noopener noreferrer">
+                                Lat: {train.latitude}, Long: {train.longitude}
+                            </a>
+                        </TableCell>
+                        <TableCell className="text-xs sm:text-sm">{train.status}</TableCell>
+                        <TableCell className="text-right text-xs sm:text-sm">{train.speed}</TableCell>
                     </TableRow>
-                  ))}
-                  <TableRow>
-                    <TableCell className="font-medium">TR002</TableCell>
-                    <TableCell>Station B</TableCell>
-                    <TableCell>Late</TableCell>
-                    <TableCell className="text-right">40 mph</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">TR003</TableCell>
-                    <TableCell>Station C</TableCell>
-                    <TableCell>On Time</TableCell>
-                    <TableCell className="text-right">48 mph</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">TR004</TableCell>
-                    <TableCell>Station D</TableCell>
-                    <TableCell>On Time</TableCell>
-                    <TableCell className="text-right">46 mph</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
+                ))}
+            </TableBody>
+        </Table>
+    </CardContent>
+</Card>
+
         </div>
       </main>
     </div>

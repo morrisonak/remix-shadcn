@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Raildash } from "~/components/raildash";
 import { status_codes, stop_codes } from "api/data/data";
-import { Train } from "lucide-react";
+
 //const mockUrl = "https://mock-api.jmorrison.workers.dev/";
 
 const url = "https://capmetro-vehicle.jmorrison.workers.dev/";
@@ -17,6 +17,7 @@ export const loader = async () => {
             throw new Error(`Error fetching data: ${response.statusText}`);
         }
         const trainData = await response.json();
+        console.log(await trainData)
 
 
         // Transform the data into a simpler format

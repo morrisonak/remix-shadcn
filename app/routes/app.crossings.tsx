@@ -1,18 +1,27 @@
 
 
-import { Link } from "@remix-run/react"
+import { Link, useLoaderData } from "@remix-run/react"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 import { MoreHorizontalIcon } from "lucide-react"
+import { supabase } from "~/lib/supa.server"
 
 
-
+export const loader = async () => {
+  let { data: Location, error } = await supabase
+    .from('Location')
+    .select('*')
+    .eq('crossing', true)
+  console.log(Location)
+  return Location
+}
 
 
 export default function Orders() {
+  const data = useLoaderData
     return (
       <div>
       <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">

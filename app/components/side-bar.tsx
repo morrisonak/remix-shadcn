@@ -56,7 +56,7 @@ export function SideBar() {
         </div>
       </div>
     </div>
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-auto">
       <Outlet />
     </div>
   </div>

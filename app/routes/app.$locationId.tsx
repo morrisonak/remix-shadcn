@@ -20,7 +20,7 @@ export async function loader({ params }) {
         // Directly use params.locationId in the query
         let { data: locations, error } = await supabase
             .from('Location')
-            .select('name, milePost, subdivision, platform')
+            .select('name, milePost, subdivision, platform, image')
             .eq('id', params.locationId);
 
         console.log("Query result:", locations);
@@ -48,54 +48,107 @@ export default function LocationId() {
     return (
         <div>
           <WaysideHeader />
-
-            <div className="grid grid-cols-1 gap-1 p-1 md:grid-cols-2 lg:grid-cols-3">
-                <Card className="col-span-full md:col-span-2 lg:col-span-2">
-                    <CardHeader>
-                        <CardTitle>{data.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Location Name</TableHead>
-                                    <TableHead>Mile Post</TableHead>
-                                    <TableHead>Subdivision</TableHead>
-                                    <TableHead className="text-right">Total</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>{data.name}</TableCell>
-                                    <TableCell>{data.milePost}</TableCell>
-                                    <TableCell>{data.subdivision}</TableCell>
-                                    <TableCell className="text-right">$40</TableCell>
-                                </TableRow>
-
-                            </TableBody>
-                        </Table>
-                    </CardContent>
-                </Card>
-                <Card className="col-span-full md:col-span-1 lg:col-span-1">
-                    <CardHeader>
-                        <CardTitle>Quick Stats</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="flex justify-between font-semibold">
-                            <div>Platform</div>
-                            <div>{data.platform}</div>
-                        </div>
-                        <div className="flex justify-between font-semibold">
-                            <div>Current CAD REV</div>
-                            <div>8</div>
-                        </div>
-                        <div className="flex justify-between font-semibold">
-                            <div>Most Recent Active Configuration</div>
-                            <div>date</div>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+          <main className="flex flex-col gap-1 p-1 bg-[#F5F5F5]">
+      <section>
+        <Card className="bg-white">
+          <CardHeader className="p-4">
+        <CardTitle className="text-xl font-bold">{data.name} Details</CardTitle>
+          </CardHeader>
+          <CardContent className="p-4">
+            <p className="text-sm font-semibold">
+              <strong>Location Name:</strong>
+              <span> {data.name}</span>                   
+            </p>
+            <p className="text-sm font-semibold">
+              <strong>Mile Post: </strong>
+             {data.milePost}                                
+            </p>
+            <p className="text-sm font-semibold">
+              <strong>Identifier:</strong>
+              XYZ123{"\n                                  "}
+            </p>
+            <p className="text-sm font-semibold">
+              <strong>Platform:</strong>
+              {data.platform}
+            </p>
+            <p className="text-sm font-semibold">
+              <strong>Module ID:</strong>
+              MOD-789{"\n                                  "}
+            </p>
+            <p className="text-sm font-semibold">
+              <strong>Instrument House Type:</strong>
+              Type-A{"\n                                  "}
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+      <section>
+        <Card className="bg-white">
+          <CardHeader className="p-4">
+            <CardTitle className="text-xl font-bold">Equipment List</CardTitle>
+          </CardHeader>
+          <CardContent className="p-4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[150px]">Equipment Name</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium">Equipment A</TableCell>
+                  <TableCell>Type I</TableCell>
+                  <TableCell>Running</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Equipment B</TableCell>
+                  <TableCell>Type II</TableCell>
+                  <TableCell>Running</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Equipment C</TableCell>
+                  <TableCell>Type III</TableCell>
+                  <TableCell>Running</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </section>
+      <section>
+        <Card className="bg-white">
+          <CardHeader className="p-4">
+            <CardTitle className="text-xl font-bold">Recent Pictures</CardTitle>
+          </CardHeader>
+          <CardContent className="p-4 flex flex-row gap-4">
+            {/* <img
+              alt="Placeholder image"
+              className="w-[200px] h-[200px]"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "200/200",
+                objectFit: "cover",
+              }}
+              width="200"
+            /> */}
+            <img
+              alt="Placeholder image"
+              className="w-[200px] h-[200px]"
+              height="200"
+              src={`${data.image}`}
+              style={{
+                aspectRatio: "200/200",
+                objectFit: "cover",
+              }}
+              width="200"
+            />
+          </CardContent>
+        </Card>
+      </section>
+    </main>
         </div>
     )
 }

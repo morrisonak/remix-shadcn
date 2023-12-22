@@ -49,7 +49,16 @@ export default function Orders() {
 
                 <TableCell className="font-medium">{location.milePost}</TableCell>
                 <TableCell>{location.name}</TableCell>
-                <TableCell className="hidden md:table-cell">{location.updatedAt}</TableCell>
+                <TableCell className="hidden md:table-cell">
+  {new Date(location.updatedAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })}
+</TableCell>
+
                 <TableCell className="text-right">{location.platform}</TableCell>
                 <TableCell className="hidden sm:table-cell">Active</TableCell>
 

@@ -138,7 +138,7 @@ export default function LocationId() {
               alt="Placeholder image"
               className="w-[200px] h-[200px]"
               height="200"
-              src={`${data.image}`}
+              src={data.image || '/default-placeholder.svg'}
               style={{
                 aspectRatio: "200/200",
                 objectFit: "cover",

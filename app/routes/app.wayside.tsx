@@ -1,13 +1,11 @@
 
 
 import { Link, useLoaderData } from "@remix-run/react"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
+import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 import { MoreHorizontalIcon } from "lucide-react"
 import { supabase } from "~/lib/supa.server"
-import { Package2Icon, SearchIcon } from "~/components/icons"
 import { WaysideHeader } from "~/components/waysideHeader"
 
 

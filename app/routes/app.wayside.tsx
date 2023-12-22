@@ -90,55 +90,35 @@ export default function Orders() {
             </TableRow>
           </TableHeader>
           <TableBody>
-          {data.map(location => (
-               
-            <TableRow key={location.id}>
-             
-                  <TableCell className="font-medium">{location.milePost}</TableCell>
-                  <TableCell>{location.name}</TableCell>
-                  <TableCell className="hidden md:table-cell">{location.updatedAt}</TableCell>
-                  <TableCell className="text-right">{location.platform}</TableCell>
-                  <TableCell className="hidden sm:table-cell">Active</TableCell>
-               
-             
-              <TableCell className="text-right">
-                
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button size="icon" variant="ghost">
-                      <MoreHorizontalIcon className="w-4 h-4" />
-                      <span className="sr-only">Actions</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>View order</DropdownMenuItem>
-                    <DropdownMenuItem>Customer details</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow> 
-             ))}
-            <TableRow>
-              <TableCell className="font-medium">56.49</TableCell>
-              <TableCell>CP Alpha</TableCell>
-              <TableCell className="hidden md:table-cell">January 5, 2023</TableCell>
-              <TableCell className="text-right">ElectroLogix</TableCell>
-              <TableCell className="hidden sm:table-cell">Active</TableCell>
-              <TableCell className="text-right">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button size="icon" variant="ghost">
-                      <MoreHorizontalIcon className="w-4 h-4" />
-                      <span className="sr-only">Actions</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>View order</DropdownMenuItem>
-                    <DropdownMenuItem>Customer details</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
+            {data.map(location => (
+
+              <TableRow key={location.id}>
+
+                <TableCell className="font-medium">{location.milePost}</TableCell>
+                <TableCell>{location.name}</TableCell>
+                <TableCell className="hidden md:table-cell">{location.updatedAt}</TableCell>
+                <TableCell className="text-right">{location.platform}</TableCell>
+                <TableCell className="hidden sm:table-cell">Active</TableCell>
+
+
+                <TableCell className="text-right">
+
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="icon" variant="ghost">
+                        <MoreHorizontalIcon className="w-4 h-4" />
+                        <span className="sr-only">Actions</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem><Link to={`/app/${location.id}`}>View Location Details</Link></DropdownMenuItem>
+                      <DropdownMenuItem>Customer details</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
+
           </TableBody>
         </Table>
       </div>

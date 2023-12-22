@@ -134,6 +134,7 @@ export default function LocationId() {
               }}
               width="200"
             /> */}
+            <Link to={data.image} target="_blank" rel="noopener noreferrer">
             <img
               alt="Placeholder image"
               className="w-[200px] h-[200px]"
@@ -145,6 +146,7 @@ export default function LocationId() {
               }}
               width="200"
             />
+            </Link>
           </CardContent>
         </Card>
       </section>

@@ -1,14 +1,11 @@
 
 import { Link, useLoaderData } from "@remix-run/react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 import { supabase } from "~/lib/supa.server"
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 import { json } from "@remix-run/node"
-import { Package2Icon, SearchIcon } from "~/components/icons"
 import { WaysideHeader } from "~/components/waysideHeader"
+import Rack from "~/components/elxRack"
 
 
 
@@ -136,7 +133,7 @@ export default function LocationId() {
             /> */}
             <Link to={data.image} target="_blank" rel="noopener noreferrer">
             <img
-              alt="Placeholder image"
+              alt="Location"
               className="w-[200px] h-[200px]"
               height="200"
               src={data.image || '/placeholder.svg'}
@@ -147,6 +144,17 @@ export default function LocationId() {
               width="200"
             />
             </Link>
+          </CardContent>
+        </Card>
+      </section>
+      <section>
+        <Card className="bg-white">
+          <CardHeader className="p-4">
+            <CardTitle className="text-xl font-bold">Electrologix Details</CardTitle>
+          </CardHeader>
+          <CardContent className="p-4 flex flex-row gap-4">
+          <Rack />
+            
           </CardContent>
         </Card>
       </section>

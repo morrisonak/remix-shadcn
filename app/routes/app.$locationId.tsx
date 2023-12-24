@@ -147,17 +147,17 @@ export default function LocationId() {
           </CardContent>
         </Card>
       </section>
-      <section>
+      {/* <section>
         <Card className="bg-white">
           <CardHeader className="p-4">
-            <CardTitle className="text-xl font-bold">Electrologix Details</CardTitle>
+            <CardTitle className="text-xl font-bold"></CardTitle>
           </CardHeader>
           <CardContent className="p-4 flex flex-row gap-4">
-            {/* <Rack /> */}
+            {/* <Rack /> 
             
           </CardContent>
         </Card>
-      </section>
+      </section> */}
     </main>
         </div>
     )

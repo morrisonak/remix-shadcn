@@ -153,7 +153,7 @@ export default function LocationId() {
             <CardTitle className="text-xl font-bold">Electrologix Details</CardTitle>
           </CardHeader>
           <CardContent className="p-4 flex flex-row gap-4">
-          <Rack />
+            {/* <Rack /> */}
             
           </CardContent>
         </Card>

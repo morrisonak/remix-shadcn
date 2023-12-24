@@ -7,7 +7,7 @@ export function Vti2S() {
     'TRACK 2 OUT': false,
     'TRACK 2 IN': false,
     'CAB 1 OUT': false,
-    'CAB 2 OUT': false,
+    'CAB 2 OUT': true,
     'VITAL IN 1': true,
     'VITAL IN 2': true,
   });

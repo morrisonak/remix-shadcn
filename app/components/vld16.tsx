@@ -3,7 +3,7 @@ export function Vld16() {
     'BANK 1': true,
     'B1 VSRR': true,
     'LAMP 1': true,
-    'LAMP 2': false,
+    'LAMP 2': false, 
     'LAMP 3': false,
     'LAMP 4': false,
     'LAMP 5': false,

@@ -1,0 +1,218 @@
+[
+    {
+      "question": "What is the capital city of Australia?",
+      "options": ["Canberra", "Sydney", "Melbourne", "Brisbane"],
+      "correctAnswer": "Canberra"
+    },
+    {
+      "question": "Which planet is known as the 'Red Planet'?",
+      "options": ["Mars", "Venus", "Jupiter", "Saturn"],
+      "correctAnswer": "Mars"
+    },
+    {
+      "question": "What is the largest country by land area in the world?",
+      "options": ["Russia", "Canada", "China", "United States"],
+      "correctAnswer": "Russia"
+    },
+    {
+      "question": "Which river flows through Egypt and Sudan?",
+      "options": ["Nile", "Amazon", "Yangtze", "Mississippi"],
+      "correctAnswer": "Nile"
+    },
+    {
+      "question": "What is the currency of Germany?",
+      "options": ["Euro", "Pound Sterling", "Dollar", "Yen"],
+      "correctAnswer": "Euro"
+    },
+    {
+      "question": "In which country is the Taj Mahal located?",
+      "options": ["India", "Pakistan", "Bangladesh", "Nepal"],
+      "correctAnswer": "India"
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "options": ["Mercury", "Venus", "Mars", "Earth"],
+      "correctAnswer": "Mercury"
+    },
+    {
+      "question": "Which continent is known as the 'Land Down Under'?",
+      "options": ["Australia", "Africa", "South America", "Antarctica"],
+      "correctAnswer": "Australia"
+    },
+    {
+      "question": "What is the national flower of Japan?",
+      "options": ["Cherry Blossom", "Rose", "Lotus", "Tulip"],
+      "correctAnswer": "Cherry Blossom"
+    },
+    {
+      "question": "Which gas makes up the majority of Earth's atmosphere?",
+      "options": ["Nitrogen", "Oxygen", "Carbon Dioxide", "Helium"],
+      "correctAnswer": "Nitrogen"
+    },
+    {
+      "question": "In which ocean is the Bermuda Triangle located?",
+      "options": ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean"],
+      "correctAnswer": "Atlantic Ocean"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": ["Blue Whale", "African Elephant", "Giraffe", "Hippopotamus"],
+      "correctAnswer": "Blue Whale"
+    },
+    {
+      "question": "Which country is known as the 'Land of the Rising Sun'?",
+      "options": ["Japan", "China", "South Korea", "Vietnam"],
+      "correctAnswer": "Japan"
+    },
+    {
+      "question": "In which continent is the Amazon Rainforest located?",
+      "options": ["South America", "Africa", "Asia", "Australia"],
+      "correctAnswer": "South America"
+    },
+    {
+      "question": "What is the largest ocean on Earth?",
+      "options": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Southern Ocean"],
+      "correctAnswer": "Pacific Ocean"
+    },
+    {
+      "question": "Which city is known as the 'City of Love'?",
+      "options": ["Paris", "Venice", "Rome", "Barcelona"],
+      "correctAnswer": "Paris"
+    },
+    {
+      "question": "In which country is the Great Barrier Reef located?",
+      "options": ["Australia", "Brazil", "Mexico", "Indonesia"],
+      "correctAnswer": "Australia"
+    },
+    {
+      "question": "What is the capital city of Canada?",
+      "options": ["Ottawa", "Toronto", "Vancouver", "Montreal"],
+      "correctAnswer": "Ottawa"
+    },
+    {
+      "question": "Which country is known as the 'Land of the Midnight Sun'?",
+      "options": ["Norway", "Sweden", "Finland", "Iceland"],
+      "correctAnswer": "Norway"
+    },
+    {
+      "question": "What is the longest river in Europe?",
+      "options": ["Volga", "Danube", "Thames", "Rhine"],
+      "correctAnswer": "Volga"
+    },
+    {
+      "question": "In which country is the Great Wall of China located?",
+      "options": ["China", "Mongolia", "India", "Nepal"],
+      "correctAnswer": "China"
+    },
+    {
+      "question": "What is the national flower of India?",
+      "options": ["Lotus", "Rose", "Tulip", "Lily"],
+      "correctAnswer": "Lotus"
+    },
+    {
+      "question": "In which ocean is the Bermuda Triangle located?",
+      "options": ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean"],
+      "correctAnswer": "Atlantic Ocean"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": ["Blue Whale", "African Elephant", "Giraffe", "Hippopotamus"],
+      "correctAnswer": "Blue Whale"
+    },
+    {
+        "question": "Which state is known as the Sunshine State?",
+        "options": ["California", "Texas", "Florida", "Hawaii"],
+        "correctAnswer": "Florida"
+      },
+      {
+        "question": "In which state is the Grand Canyon located?",
+        "options": ["Nevada", "Arizona", "New Mexico", "Colorado"],
+        "correctAnswer": "Arizona"
+      },
+      {
+        "question": "Which state is famous for its lobster?",
+        "options": ["Maryland", "Maine", "Virginia", "Louisiana"],
+        "correctAnswer": "Maine"
+      },
+      {
+        "question": "What is the capital of Texas?",
+        "options": ["Houston", "Dallas", "San Antonio", "Austin"],
+        "correctAnswer": "Austin"
+      },
+      {
+        "question": "Which state is home to Yellowstone National Park?",
+        "options": ["Colorado", "Montana", "Wyoming", "Utah"],
+        "correctAnswer": "Wyoming"
+      },
+      {
+        "question": "In which state is Mount Rushmore located?",
+        "options": ["North Dakota", "South Dakota", "Nebraska", "Iowa"],
+        "correctAnswer": "South Dakota"
+      },
+      {
+        "question": "Which state is known for its maple syrup production?",
+        "options": ["New York", "Vermont", "New Hampshire", "Connecticut"],
+        "correctAnswer": "Vermont"
+      },
+      {
+        "question": "What is the largest city in California?",
+        "options": ["Los Angeles", "San Diego", "San Francisco", "Sacramento"],
+        "correctAnswer": "Los Angeles"
+      },
+      {
+        "question": "Which state is known as the Land of Enchantment?",
+        "options": ["New Mexico", "Arizona", "Nevada", "Colorado"],
+        "correctAnswer": "New Mexico"
+      },
+      {
+        "question": "In which state is the Statue of Liberty located?",
+        "options": ["New Jersey", "Connecticut", "Rhode Island", "New York"],
+        "correctAnswer": "New York"
+      },
+      {
+        "question": "What is the official state flower of Hawaii?",
+        "options": ["Hibiscus", "Plumeria", "Orchid", "Sunflower"],
+        "correctAnswer": "Hibiscus"
+      },
+      {
+        "question": "Which state is known as the Last Frontier?",
+        "options": ["Alaska", "Hawaii", "Washington", "Oregon"],
+        "correctAnswer": "Alaska"
+      },
+      {
+        "question": "What is the capital of Nevada?",
+        "options": ["Las Vegas", "Henderson", "Reno", "Carson City"],
+        "correctAnswer": "Carson City"
+      },
+      {
+        "question": "In which state is the Alamo located?",
+        "options": ["Arizona", "Texas", "New Mexico", "Oklahoma"],
+        "correctAnswer": "Texas"
+      },
+      {
+        "question": "Which state is known for its potatoes?",
+        "options": ["Idaho", "Montana", "Utah", "Oregon"],
+        "correctAnswer": "Idaho"
+      },
+      {
+        "question": "What is the official state bird of Florida?",
+        "options": ["Bald Eagle", "American Robin", "Northern Mockingbird", "Brown Pelican"],
+        "correctAnswer": "Northern Mockingbird"
+      },
+      {
+        "question": "Which state is famous for its seafood, including crabs?",
+        "options": ["Georgia", "Alabama", "South Carolina", "Maryland"],
+        "correctAnswer": "Maryland"
+      },
+      {
+        "question": "What is the capital of Louisiana?",
+        "options": ["Baton Rouge", "New Orleans", "Shreveport", "Lafayette"],
+        "correctAnswer": "Baton Rouge"
+      },
+      {
+        "question": "In which state is the Rocky Mountains located?",
+        "options": ["Colorado", "Utah", "Arizona", "Nevada"],
+        "correctAnswer": "Colorado"
+      }
+  ]
+  

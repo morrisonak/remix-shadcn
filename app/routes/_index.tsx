@@ -1,180 +1,188 @@
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CalendarDateRangePicker } from '@/components/date-range-picker';
-import { MainNav } from '@/components/main-nav';
-import { Overview } from '@/components/overview';
-import { RecentSales } from '@/components/recent-sales';
-import { Search } from '@/components/search';
-import TeamSwitcher from '@/components/team-switcher';
-import { UserNav } from '@/components/user-nav';
+import { useState, useEffect } from 'react';
+import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useLoaderData } from '@remix-run/react';
+import quizData from '~/quizData.json';
+
+const shuffleArray = (array) => {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
+export function loader() {
+  return { quizData };
+}
 
 export default function Index() {
+  const { quizData } = useLoaderData();
+
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [userAnswerStyle, setUserAnswerStyle] = useState('');
+  const [timer, setTimer] = useState(10);
+  const [showSummary, setShowSummary] = useState(false);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [shuffledOptions, setShuffledOptions] = useState([]);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+
+  useEffect(() => {
+    const selected = shuffleArray(quizData).slice(0, 10);
+    setSelectedQuestions(selected);
+  }, []);
+
+  useEffect(() => {
+    let timerInterval;
+    if (!showSummary) {
+      timerInterval = setInterval(() => {
+        setTimer((prevTimer) => {
+          if (prevTimer === 0) {
+            handleTimeout();
+          }
+          return prevTimer - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timerInterval);
+  }, [currentQuestionIndex, showSummary]);
+
+  useEffect(() => {
+    if (currentQuestionIndex < selectedQuestions.length) {
+      const options = selectedQuestions[currentQuestionIndex].options;
+      setShuffledOptions(shuffleArray(options));
+    }
+  }, [currentQuestionIndex, selectedQuestions]);
+
+  const handleAnswerClick = (answer) => {
+    const isCorrect = answer === selectedQuestions[currentQuestionIndex].correctAnswer;
+    setUserAnswer(answer);
+    setTimeout(() => {
+      setUserAnswer('');
+      setTimer(10);
+      moveToNextQuestion(isCorrect);
+    }, 1000);
+    setUserAnswerStyle(isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white');
+  };
+
+  const moveToNextQuestion = (isCorrect) => {
+    if (currentQuestionIndex < selectedQuestions.length - 1) {
+      setUserAnswerStyle('');
+      setUserAnswer('');
+      setTimer(10);
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      if (isCorrect) {
+        setCorrectAnswersCount((prevCount) => prevCount + 1);
+      }
+    } else {
+      console.log('End of Quiz');
+      setCorrectAnswersCount((prevCount) => prevCount + (isCorrect ? 1 : 0));
+      setShowSummary(true);
+    }
+  };
+
+  const handleTimeout = () => {
+    setUserAnswerStyle('bg-red-500 text-white');
+    setTimeout(() => {
+      setUserAnswerStyle('');
+      setUserAnswer('');
+      setTimer(10);
+      moveToNextQuestion(false);
+    }, 1000);
+  };
+
+  const handleRestart = () => {
+    setCurrentQuestionIndex(0);
+    setUserAnswer('');
+    setUserAnswerStyle('');
+    setTimer(10);
+    setShowSummary(false);
+    setCorrectAnswersCount(0);
+  };
+
+  const renderQuizContent = () => {
+    if (selectedQuestions.length === 0) {
+      return <div>Loading...</div>;
+    }
+
+    if (showSummary) {
+      return (
+        <div>
+          <h2 className="text-xl font-semibold mb-4">Quiz Summary</h2>
+          <p>You answered {correctAnswersCount} out of {selectedQuestions.length} questions correctly.</p>
+          <Button className="mt-4" onClick={handleRestart}>
+            Restart Quiz
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <>
+          <h2 className="text-xl font-semibold">Current Question:</h2>
+          <p className="text-lg text-gray-300">{selectedQuestions[currentQuestionIndex].question}</p>
+          <div className="grid grid-cols-2 gap-4">
+            {shuffledOptions.map((option, index) => (
+              <Button
+                key={index}
+                className={`text-black font-semibold border-white ${userAnswer === option ? userAnswerStyle : 'hover:bg-gray-300'}`}
+                variant="outline"
+                onClick={() => handleAnswerClick(option)}
+                disabled={userAnswer !== ''}
+              >
+                {option}
+              </Button>
+            ))}
+          </div>
+        </>
+      );
+    }
+  };
+
   return (
-    <div className="min-h-screen">
-      <div className="flex-col flex">
-        <div className="border-b">
-          <div className="flex md:h-16 md:items-center px-4 md:flex-row flex-col h-auto justify-between">
-            <TeamSwitcher />
-            <MainNav className="mx-6 my-3 md:my-0" />
-            <div className="ml-auto flex items-center space-x-4 w-full md:w-auto">
-              <Search />
-              <UserNav />
+    <Card className="bg-gray-800 text-white rounded-xl shadow-lg overflow-hidden">
+      <CardHeader className="p-4">
+        <CardTitle className="text-2xl font-bold">Quiz Game</CardTitle>
+        <CardDescription className="text-sm text-gray-300">Answer the questions correctly to win!</CardDescription>
+      </CardHeader>
+      <CardContent className="p-4 space-y-4">
+        {renderQuizContent()}
+      </CardContent>
+      <CardFooter className="p-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <TimerIcon className="w-4 h-4 mr-2" />
+            <span className="text-sm">Time remaining: {timer}s</span>
+          </div>
+          <div className="w-full ml-2">
+            <div className="h-2 bg-gray-600 rounded">
+              <div className={`h-2 ${timer > 5 ? 'bg-green-500' : 'bg-red-500'} rounded w-${(timer / 10) * 100}%`} />
             </div>
           </div>
         </div>
-        <div className="flex-1 space-y-4 md:p-8 pt-6 p-2">
-          <div className="flex md:items-center md:justify-between space-y-2 flex-col md:flex-row justify-start">
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-            <div className="flex items-center space-x-2">
-              <CalendarDateRangePicker />
-              <Button>Download</Button>
-            </div>
-          </div>
-          <Tabs defaultValue="overview" className="space-y-4">
-            <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="analytics" disabled>
-                Analytics
-              </TabsTrigger>
-              <TabsTrigger value="reports" disabled>
-                Reports
-              </TabsTrigger>
-              <TabsTrigger value="notifications" disabled>
-                Notifications
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="overview" className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Total Revenue
-                    </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground">
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">$45,231.89</div>
-                    <p className="text-xs text-muted-foreground">
-                      +20.1% from last month
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Subscriptions
-                    </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+2350</div>
-                    <p className="text-xs text-muted-foreground">
-                      +180.1% from last month
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground">
-                      <rect width="20" height="14" x="2" y="5" rx="2" />
-                      <path d="M2 10h20" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+12,234</div>
-                    <p className="text-xs text-muted-foreground">
-                      +19% from last month
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Active Now
-                    </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground">
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
-                    <p className="text-xs text-muted-foreground">
-                      +201 since last hour
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 max-w-full">
-                <Card className="col-span-4">
-                  <CardHeader>
-                    <CardTitle>Overview</CardTitle>
-                  </CardHeader>
-                  <CardContent className="md:pl-2 px-1">
-                    <Overview />
-                  </CardContent>
-                </Card>
-                <Card className="col-span-3">
-                  <CardHeader>
-                    <CardTitle>Recent Sales</CardTitle>
-                    <CardDescription>
-                      You made 265 sales this month.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <RecentSales />
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
+  );
+}
+
+function TimerIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="10" x2="14" y1="2" y2="2" />
+      <line x1="12" x2="15" y1="14" y2="11" />
+      <circle cx="12" cy="14" r="8" />
+    </svg>
   );
 }

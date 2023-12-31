@@ -24,13 +24,13 @@ export function Vio86() {
     const healthStatus = true; // Static healthStatus set to true
   
     return (
-      <div className="border-2 border-black p-4 bg-gray-100 max-w-xs flex flex-col">
+      <div className="border-8 border-black p-4 bg-gray-400 max-w-xs flex flex-col">
         <div className="text-center border-b border-black pb-2 mb-2">
           <h2 className="text-lg font-bold border-4 bg-white">VIO-86S</h2>
         </div>
         <div className="flex-grow space-y-2">
           {Object.entries(lightsStatus).map(([item, isOn]) => (
-            <div className="flex items-center" key={item}>
+            <div className="flex items-center bg-white" key={item}>
               <div
                 className={`border-2 rounded-full w-4 h-4 mr-2 flex-shrink-0 ${
                   isOn ? 'bg-green-500' : 'bg-gray-300'

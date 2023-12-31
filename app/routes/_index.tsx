@@ -44,7 +44,7 @@ export default function Index() {
           }
           return prevTimer - 1;
         });
-      }, 1000);
+      }, 1500);
     }
     return () => clearInterval(timerInterval);
   }, [currentQuestionIndex, showSummary]);
@@ -61,7 +61,7 @@ export default function Index() {
     setUserAnswer(answer);
     setTimeout(() => {
       setUserAnswer('');
-      setTimer(10);
+      setTimer(20);
       moveToNextQuestion(isCorrect);
     }, 1000);
     setUserAnswerStyle(isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white');
@@ -71,7 +71,7 @@ export default function Index() {
     if (currentQuestionIndex < selectedQuestions.length - 1) {
       setUserAnswerStyle('');
       setUserAnswer('');
-      setTimer(10);
+      setTimer(20);
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       if (isCorrect) {
         setCorrectAnswersCount((prevCount) => prevCount + 1);
@@ -88,7 +88,7 @@ export default function Index() {
     setTimeout(() => {
       setUserAnswerStyle('');
       setUserAnswer('');
-      setTimer(10);
+      setTimer(20);
       moveToNextQuestion(false);
     }, 1000);
   };

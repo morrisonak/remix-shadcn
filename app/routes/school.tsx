@@ -1,6 +1,6 @@
+import { supabase } from "~/lib/supa.server";
 
-
-import { ActionArgs, ActionFunction } from "@remix-run/node";
+import { ActionArgs, ActionFunction, redirect } from "@remix-run/node";
 import { Homeschool } from "~/components/homeschool";
 
 
@@ -14,9 +14,17 @@ export let action: ActionFunction = async ({
     const time = formData.get("time");
     const date = formData.get("date")
     console.log("the selected student:", student, subject, time, date)
-    //await createPost({ title, slug, markdown });
+   
+    
+const { data, error } = await supabase
+.from('school')
+.insert([
+  { student: student, subject: subject, timeUnit: time, dateCompleted: date },
+])
+.select()
+
   
-    return null;
+    return redirect("/School");
   };
 
   

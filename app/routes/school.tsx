@@ -24,17 +24,23 @@ export default function School() {
             <main className="p-4">
                 <Outlet />
             </main>
-            <nav className="fixed inset-x-0 bottom-0 bg-gray-700 p-4 flex justify-around">
-    <Link to="/school" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Home
-    </Link>
-    <Link to="./add" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Add New Record
-    </Link>
-    <Link to="./view-records" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        View Records
-    </Link>
-</nav>
+            <nav className="fixed inset-x-0 bottom-0 bg-gray-700 p-2 flex justify-around">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <Link to="/school">
+                        Home
+                    </Link></button>
+                
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <Link to="./add">
+                        Add New Record
+                    </Link>
+                </button>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <Link to="./view-records">
+                        View Records
+                    </Link>
+                </button>
+            </nav>
 
 
         </div>

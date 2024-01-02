@@ -20,22 +20,18 @@ import {
 } from "@/components/ui/select"
 
 
-export function Homeschool() {
+export function AddComponent() {
   const [date, setDate] = useState<Date>()
 
   return (
-    <div className="bg-gray-800 text-white min-h-screen"> {/* Dark background */}
-      <header className="flex items-center justify-between px-4 py-2 border-b border-gray-700">
-        <h1 className="text-2xl font-semibold">Homeschool Tracker</h1>
-        <Avatar className="w-8 h-8" />
-      </header>
-      <main className="p-4">
+
+      
         <div className="space-y-4">
           {/* Select components for Student, Subject, and Time Period */}
          <Form method="post">
          
           <Select name="student">
-            <SelectTrigger className="w-full bg-gray-700 border border-gray-600">
+            <SelectTrigger className="w-full mb-4 bg-gray-700 border border-gray-600 ">
               <SelectValue placeholder="Select Student" />
             </SelectTrigger>
             
@@ -50,7 +46,7 @@ export function Homeschool() {
        
 
           <Select name="subject">
-            <SelectTrigger className="w-full bg-gray-700 border border-gray-600">
+            <SelectTrigger className="w-full mb-4 bg-gray-700 border border-gray-600">
               <SelectValue placeholder="Select Subject" />
             </SelectTrigger>
             <SelectContent>
@@ -63,7 +59,7 @@ export function Homeschool() {
           </Select>
 
           <Select name="time">
-            <SelectTrigger className="w-full bg-gray-700 border border-gray-600">
+            <SelectTrigger className="w-full mb-4 bg-gray-700 border border-gray-600">
               <SelectValue placeholder="Select Time Period" />
             </SelectTrigger>
             <SelectContent>
@@ -76,7 +72,7 @@ export function Homeschool() {
           {/* Popover for Calendar */}
           <Popover>
             <PopoverTrigger asChild>
-              <Button className="w-full justify-start text-left font-normal bg-gray-700 border border-gray-600">
+              <Button className="w-full mb-4 justify-start text-left font-normal bg-gray-700 border border-gray-600">
                 <CalendarDaysIcon className="mr-1 h-4 w-4 -translate-x-1" />
                 {date ? format(date, "PPP") : <span>Select Date</span>}
               </Button>
@@ -93,11 +89,9 @@ export function Homeschool() {
           </Button>
           </Form>
         </div>
-      </main>
-      <nav className="fixed inset-x-0 bottom-0 bg-gray-700 p-4 flex justify-around"> {/* Fixed bottom navbar */}
-        {/* Navigation items here */}
-      </nav>
-    </div>
+ 
+     
+    
   )
 }
 

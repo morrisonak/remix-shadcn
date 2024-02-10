@@ -7,6 +7,7 @@ import { supabase } from "~/lib/supa.server";
 export let action: ActionFunction = async ({ request }: ActionArgs) => {
     const formData = await request.formData();
 
+    const selectedDate = formData.get("selectedDate");
     const firstName = formData.get("first-name");
     const lastName = formData.get("last-name");
     const email = formData.get("email");
@@ -19,13 +20,13 @@ export let action: ActionFunction = async ({ request }: ActionArgs) => {
 
 
 
-    console.log("Selected:", firstName, lastName, email, milePost, subdivision, location, revision, markups,  message);
+    console.log("form Data:", selectedDate, firstName, lastName, email, milePost, subdivision, location, revision, markups, message);
 
     try {
         const { data, error } = await supabase
-            .from('school')
+            .from('audit')
             .insert([
-                { student: firstName, subject: lastName, timeUnit: null, dateCompleted: null },
+                { firstName: firstName, lastName: lastName, email: email, milePost: milePost, subdivision: subdivision, location: location, revision: revision, markups: markups, selectedDate: selectedDate, message: message },
             ])
             .select()
 

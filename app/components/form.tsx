@@ -42,7 +42,7 @@ export default function Forms() {
                                         onSelect={setDate} />
                                 </PopoverContent>
                             </Popover>
-                            <input type="hidden" id="selectedDate" name="date" value={date ? format(date, "yyyy-MM-dd") : ''} />
+                            <input type="hidden" id="selectedDate" name="selectedDate" value={date ? format(date, "yyyy-MM-dd") : ''} />
                         </div>
                     </div>
 

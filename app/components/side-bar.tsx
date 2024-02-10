@@ -40,10 +40,10 @@ export function SideBar() {
             </Link>
             <Link
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-black hover:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300"
-              to="#"
+              to="form"
             >
               <UsersIcon className="h-4 w-4" />
-              Customers
+              Annual Inspection
             </Link>
             <Link
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-black hover:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300"

@@ -47,7 +47,7 @@ export default function Orders() {
 
               <TableRow key={location.id}>
 
-                <TableCell className="font-medium">{location.milePost}</TableCell>
+                <TableCell className="font-medium"><Link to={`/app/${location.id}`}>{location.milePost}</Link></TableCell>
                 <TableCell>{location.name}</TableCell>
                 <TableCell className="hidden md:table-cell">
   {new Date(location.updatedAt).toLocaleDateString('en-US', {

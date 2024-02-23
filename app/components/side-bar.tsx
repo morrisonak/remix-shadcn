@@ -11,7 +11,7 @@ export function SideBar() {
         <div className="flex h-[60px] items-center px-6">
           <Link className="flex items-center gap-2 font-semibold text-black dark:text-gray-900" to="./">
             <Package2Icon className="h-6 w-6" />
-            <span>Signal Configuration</span>
+            <span>Signal Dashboard</span>
           </Link>
         </div>
         <div className="flex-1">
@@ -47,10 +47,10 @@ export function SideBar() {
             </Link>
             <Link
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-black hover:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300"
-              to="#"
+              to="active"
             >
               <LineChartIcon className="h-4 w-4" />
-              Analytics
+              Active Monitoring
             </Link>
           </nav>
         </div>
